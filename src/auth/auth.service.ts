@@ -37,6 +37,7 @@ export class AuthService {
         name: data.name,
         password: data.password,
         role: data.role,
+        phoneNumber: data.phoneNumber,
         createdAt: currentDateTime,
         updatedAt: currentDateTime,
       },
@@ -70,6 +71,7 @@ export class AuthService {
         sub: checkUserExists.id,
         userId: checkUserExists.userId,
         name: checkUserExists.name,
+        phoneNumber: checkUserExists.phoneNumber,
       });
 
       return buildResponse(
