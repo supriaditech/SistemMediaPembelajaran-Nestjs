@@ -8,16 +8,17 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  userId    String   @unique
-  password  String
-  name      String
-  role      Role
-  Admin     Admin?
-  Guru      Guru?
-  Murid     Murid?
-  createdAt DateTime
-  updatedAt DateTime
+  id          Int      @id @default(autoincrement())
+  userId      String   @unique
+  password    String
+  name        String
+  phoneNumber String
+  role        Role
+  Admin       Admin?
+  Guru        Guru?
+  Murid       Murid?
+  createdAt   DateTime
+  updatedAt   DateTime
 
   @@map("users")
 }
