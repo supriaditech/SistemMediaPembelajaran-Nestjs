@@ -55,12 +55,15 @@ model Murid {
 }
 
 model Materi {
-  id       Int     @id @default(autoincrement())
-  title    String
-  content  String
-  videoUrl String?
-  guruId   Int
-  guru     Guru    @relation(fields: [guruId], references: [id])
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  videoUrl  String
+  guruId    Int
+  guru      Guru     @relation(fields: [guruId], references: [id])
+  soals     Soal[]
+  createdAt DateTime
+  updatedAt DateTime
 
   @@map("materis")
 }
@@ -70,7 +73,9 @@ model Soal {
   question String
   answer   String
   guruId   Int
+  materiId Int
   guru     Guru      @relation(fields: [guruId], references: [id])
+  materi   Materi    @relation(fields: [materiId], references: [id])
   options  Option[]
   jawaban  Jawaban[]
 
