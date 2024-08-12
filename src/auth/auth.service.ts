@@ -55,6 +55,11 @@ export class AuthService {
       where: {
         userId: data.userId,
       },
+      include: {
+        Guru: true,
+        Murid: true,
+        Admin: true,
+      },
     });
 
     if (!checkUserExists) {
@@ -92,6 +97,11 @@ export class AuthService {
     const getProfileDetail = await this.prisma.user.findFirst({
       where: {
         id: Id,
+      },
+      include: {
+        Guru: true,
+        Murid: true,
+        Admin: true,
       },
     });
 

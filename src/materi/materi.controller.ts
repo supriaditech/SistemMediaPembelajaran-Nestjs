@@ -31,4 +31,10 @@ export class MateriController {
   async deleteMateri(@Body() materiId: number, @Request() req) {
     return await this.materiService.deleteMateri(req.user.id, materiId);
   }
+
+  @UseGuards(AuthGuard)
+  @Post('get-id-materi')
+  async getIdMateri(@Body() materiId: number) {
+    return await this.materiService.getMateriById(materiId);
+  }
 }
