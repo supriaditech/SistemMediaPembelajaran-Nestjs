@@ -160,4 +160,27 @@ export class MateriService {
       );
     }
   }
+
+  async getMateriById(materiId: any) {
+    const id = materiId.id;
+    const materi = await this.prisma.materi.findUnique({
+      where: { id: id },
+      include: {
+        guru: true,
+      },
+    });
+
+    if (!materi) {
+      throw new HttpException(
+        buildResponse(null, 'Materi not found', HttpStatus.NOT_FOUND),
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    return buildResponse(
+      materi,
+      'Materi retrieved successfully',
+      HttpStatus.OK,
+    );
+  }
 }

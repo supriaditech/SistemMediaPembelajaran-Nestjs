@@ -57,7 +57,7 @@ model Murid {
 model Materi {
   id        Int      @id @default(autoincrement())
   title     String
-  content   String
+  content   String   @db.Text
   videoUrl  String
   guruId    Int
   guru      Guru     @relation(fields: [guruId], references: [id], onDelete: Cascade)
