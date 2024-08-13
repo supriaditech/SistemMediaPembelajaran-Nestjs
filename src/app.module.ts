@@ -8,9 +8,10 @@ import { UserService } from './user/user.service';
 import { UserModule } from './user/user.module';
 import { MateriModule } from './materi/materi.module';
 import { GuruModule } from './guru/guru.module';
+import { SoalModule } from './soal/soal.module';
 
 @Module({
-  imports: [PrismaModule, AuthModule, UserModule, MateriModule, GuruModule],
+  imports: [PrismaModule, AuthModule, UserModule, MateriModule, GuruModule, SoalModule],
   controllers: [AppController, UserController],
   providers: [AppService, UserService],
 })

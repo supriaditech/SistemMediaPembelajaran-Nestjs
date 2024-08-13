@@ -55,13 +55,14 @@ model Murid {
 }
 
 model Materi {
-  id        Int      @id @default(autoincrement())
-  title     String
-  content   String   @db.Text
-  videoUrl  String
-  guruId    Int
-  guru      Guru     @relation(fields: [guruId], references: [id], onDelete: Cascade)
-  soals     Soal[]
+  id       Int    @id @default(autoincrement())
+  title    String
+  content  String @db.Text
+  videoUrl String
+  guruId   Int
+  guru     Guru   @relation(fields: [guruId], references: [id], onDelete: Cascade)
+  soals    Soal[]
+
   createdAt DateTime
   updatedAt DateTime
 
@@ -74,8 +75,8 @@ model Soal {
   answer   String
   guruId   Int
   materiId Int
-  guru     Guru      @relation(fields: [guruId], references: [id])
-  materi   Materi    @relation(fields: [materiId], references: [id])
+  guru     Guru      @relation(fields: [guruId], references: [id], onDelete: Cascade)
+  materi   Materi    @relation(fields: [materiId], references: [id], onDelete: Cascade)
   options  Option[]
   jawaban  Jawaban[]
 
@@ -86,7 +87,7 @@ model Option {
   id     Int    @id @default(autoincrement())
   text   String
   soalId Int
-  soal   Soal   @relation(fields: [soalId], references: [id])
+  soal   Soal   @relation(fields: [soalId], references: [id], onDelete: Cascade)
 
   @@map("options")
 }
@@ -96,8 +97,8 @@ model Jawaban {
   soalId  Int
   muridId Int
   jawaban String
-  soal    Soal   @relation(fields: [soalId], references: [id])
-  murid   Murid  @relation(fields: [muridId], references: [id])
+  soal    Soal   @relation(fields: [soalId], references: [id], onDelete: Cascade)
+  murid   Murid  @relation(fields: [muridId], references: [id], onDelete: Cascade)
 
   @@map("jawabans")
 }
