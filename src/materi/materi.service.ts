@@ -167,6 +167,7 @@ export class MateriService {
       where: { id: id },
       include: {
         guru: true,
+        soals: true,
       },
     });
 

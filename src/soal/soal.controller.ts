@@ -4,6 +4,7 @@ import { CreateSoalDto } from './Dto/CreateSoalDto';
 import { CreateJawabanDto } from './Dto/CreateJawabanDto';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { SubmitMultipleJawabanDto } from './Dto/SubmitMultipleJawabanDto';
+import { UpdateSoalDto } from './Dto/UpdateSoalDto';
 
 @Controller('soal')
 export class SoalController {
@@ -44,12 +45,9 @@ export class SoalController {
 
   @UseGuards(AuthGuard)
   @Post('update')
-  async updateSoal(
-    @Request() req,
-    @Body() updateSoalDto: { soalId: number; data: CreateSoalDto },
-  ) {
-    const { soalId, data } = updateSoalDto;
-    return this.soalService.updateSoal(req.user.id, soalId, data);
+  async updateSoal(@Request() req, @Body() data: UpdateSoalDto) {
+    console.log(data);
+    return this.soalService.updateSoal(req.user.id, data);
   }
 
   @UseGuards(AuthGuard)

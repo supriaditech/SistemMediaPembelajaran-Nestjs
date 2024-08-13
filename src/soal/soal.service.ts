@@ -5,6 +5,7 @@ import { buildResponse } from 'helper/buildResponse';
 // import { getCurrentLocalTime } from 'helper/date-helper';
 import { CreateJawabanDto } from './Dto/CreateJawabanDto';
 import { SubmitMultipleJawabanDto } from './Dto/SubmitMultipleJawabanDto';
+import { UpdateSoalDto } from './Dto/UpdateSoalDto';
 
 @Injectable()
 export class SoalService {
@@ -165,7 +166,7 @@ export class SoalService {
     );
   }
 
-  async updateSoal(userId: number, soalId: number, data: CreateSoalDto) {
+  async updateSoal(userId: number, data: UpdateSoalDto) {
     const user = await this.prisma.user.findUnique({
       where: { id: userId },
       include: { Guru: true },
@@ -177,9 +178,9 @@ export class SoalService {
         HttpStatus.FORBIDDEN,
       );
     }
-
+    console.log(data.id);
     const soal = await this.prisma.soal.findUnique({
-      where: { id: soalId },
+      where: { id: data.id },
       include: { guru: true },
     });
 
@@ -198,7 +199,7 @@ export class SoalService {
     }
 
     const updatedSoal = await this.prisma.soal.update({
-      where: { id: soalId },
+      where: { id: data.id },
       data: {
         question: data.question,
         answer: data.answer,
